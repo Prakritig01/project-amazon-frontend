@@ -3,7 +3,7 @@ import React from 'react';
 const Navbar = () => {
   return (
     
-      <div className="bg-[#232f3e] flex text-white text-xs ">
+      <div className="bg-[#232f3e] flex text-white text-s overflow-scroll scrollbar-x- scrollbar-none whitespace-nowrap ">
         <button className="bg-transparent px-4 py-2 rounded-md hover:bg-gray-700 focus:outline-none  ">All</button>
         <button className="bg-transparent px-4 py-2 rounded-md hover:bg-gray-700 focus:outline-none  ">Fresh</button>
         <button className="bg-transparent px-4 py-2 rounded-md hover:bg-gray-700 focus:outline-none  ">MX Player</button>
