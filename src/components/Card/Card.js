@@ -2,7 +2,7 @@ import React from 'react';
 
 const Card = ({ name, description, category, image, newCost, oldCost }) => {
   return (
-    <div className="bg-white shadow-md rounded-lg p-4 flex flex-col justify-between max-w-xs font-roboto">
+    <div className="bg-white shadow-md rounded-lg p-4 flex flex-col justify-between  font-roboto w-auto max-w-xs">
       <img
         src={image}
         alt={name}
@@ -16,7 +16,7 @@ const Card = ({ name, description, category, image, newCost, oldCost }) => {
       <div className="flex flex-col justify-between items-start">
         <div>
           <p className="text-xl font-bold">₹{newCost}</p>
-          <p className="text-sm text-gray-500 line-through">₹{oldCost}</p>
+          <p className="text-sm text-gray-500 line-through text-red-600">₹{oldCost}</p>
         </div>
         <button className="bg-yellow-500 text-black px-4 py-2 rounded-full hover:bg-yellow-600 w-full h-8 mt-4 flex items-center justify-center">
           Add to Cart
