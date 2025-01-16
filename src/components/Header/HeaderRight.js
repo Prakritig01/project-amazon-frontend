@@ -14,21 +14,22 @@ const HeaderRight = () => {
       {/* Flag and Language Button */}
       <div className="flex flex-row items-center h-8">
         <img src={flag} alt="Flag" className="h-5 w-6" />
-        <button
-          className="h-5 bg-transparent text-white border-none focus:outline-none hover:text-gray-300"
+        <select
+          className="h-5 bg-transparent text-white border-none focus:outline-none hover:text-gray-300 text-sm mb-1"
         >
-          EN
-        </button>
+          <option value="EN">EN</option>
+        </select>
       </div>
 
       {/* Hello, Prakriti and Accounts Button */}
       <div className="flex flex-col items-center h-8 text-white text-xs">
-        <p>Hello, Prakriti</p>
-        <button
-          className="h-5 bg-transparent text-white border-none focus:outline-none hover:text-gray-300"
+        <p className="text-left">Hello, Prakriti</p>
+        <select
+          className=" bg-transparent text-white border-none focus:outline-none hover:text-gray-300 font-bold"
         >
-          Accounts & Lists
-        </button>
+          <option value=" Accounts & Lists"> Accounts & Lists</option>
+         
+        </select>
       </div>
 
       {/* Returns and Orders Buttons */}

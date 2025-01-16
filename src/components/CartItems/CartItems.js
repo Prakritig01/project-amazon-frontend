@@ -36,14 +36,13 @@ const CartItems = () => {
 
   return (
     <div className="cart-items bg-white w-[80%] mx-auto p-6 rounded-lg shadow-lg">
-      <h1 className="text-2xl font-semibold mb-4">Shopping Cart</h1>
-
-      <button className="text-blue-500 hover:text-blue-700 focus:outline-none mb-4">
+      <h1 className="text-2xl font-semibold ">Shopping Cart</h1>
+      <button className="focus:outline-none " style={{ color: "#538bbd" }}>
         Deselect all items
       </button>
 
       {/* Gray line below the button */}
-      <div className="line-div flex flex-col mb-6">
+      <div className="line-div flex flex-col mb-2">
         <p className="text-right font-semibold">Price</p>
         <div className="border-b border-gray-300 w-full mt-2"></div>
       </div>
@@ -71,13 +70,33 @@ const CartItems = () => {
             {/* Product Info */}
             <div className="product-info flex-1 ml-4">
               <h3 className="text-xl font-semibold">{product.name}</h3>
-              <p className="text-sm text-gray-600 mt-1">{product.description}</p>
-              <p className="text-sm text-gray-500 mt-1">Category: {product.category}</p>
+              <p className="text-sm text-gray-600 mt-1">
+                {product.description}
+              </p>
+              <p className="text-sm text-gray-500 mt-1">
+                Category: {product.category}
+                <div className="amazon-logo flex ">
+                  <img
+                    src="https://m.media-amazon.com/images/G/31/marketing/fba/fba-badge_18px._CB485936079_.png"
+                    alt=""
+                  />
+                </div>
+                <div className="quantity-btn ">
+              <button className="flex items-center justify-between border-4 border-yellow-300 bg-white text-gray-900 w-[14%] h-8 px-2 rounded-full mt-2">
+                <i className="fi fi-rs-trash"></i>1
+                <i className="fi fi-br-plus"></i>
+              </button>
             </div>
+              </p>
+            </div>
+
+           
 
             {/* Product Price */}
             <div className="product-price text-right">
-              <p className="text-xl font-bold text-black">₹{product.new_cost}</p>
+              <p className="text-xl font-bold text-black">
+                ₹{product.new_cost}
+              </p>
               <p className="text-sm text-gray-500 line-through text-red-600">
                 ₹{product.old_cost}
               </p>

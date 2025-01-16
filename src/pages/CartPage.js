@@ -6,7 +6,7 @@ import SubTotal from '../components/Subtotal/SubTotal';
 const CartPage = () => {
     
   return (
-    <div className='cart-page bg-gray-200 max-w-full flex flex-row'>
+    <div className='cart-page bg-gray-200 max-w-full flex flex-row gap-[3%] p-[2%] '>
       <CartItems/>
       <SubTotal/>
     </div>

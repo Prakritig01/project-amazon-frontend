@@ -2,7 +2,7 @@ import React from "react";
 
 const HeaderMid = () => {
   return (
-    <div className="w-[58%] flex items-center justify-between font-roboto">
+    <div className="w-[55%] flex items-center justify-between font-roboto">
       {/* Dropdown Menu */}
       <div className="dropdown">
         <select className="rounded-l-md bg-gray-200 h-8 px-3 focus:outline-none">
