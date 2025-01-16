@@ -29,7 +29,7 @@ const Carousel = () => {
   };
 
   return (
-    <div className="relative w-full h-[500px] overflow-hidden">
+    <div className="relative w-full h-full overflow-hidden">
       {/* Carousel Images */}
       <div className="relative w-full h-full">
         <img
@@ -39,20 +39,21 @@ const Carousel = () => {
         />
       </div>
 
-      {/* Left Button */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75"
-      >
-        &#8249;
-      </button>
+     {/* Left Button */}
+<button
+  onClick={prevSlide}
+  className=" absolute left-4 top-1/4 transform -translate-y-1/2 bg-transparent  text-black p-2 rounded-full hover:bg-opacity-75"
+>
+<i class="fi fi-ts-angle-left text-3xl"></i>
+</button>
+
 
       {/* Right Button */}
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75"
+        className="absolute right-4 top-1/4 transform -translate-y-1/2 p-2 rounded-full hover:bg-opacity-75"
       >
-        &#8250;
+       <i class="fi fi-ts-angle-right  text-3xl"></i>
       </button>
 
     </div>

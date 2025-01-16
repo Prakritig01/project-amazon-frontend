@@ -4,7 +4,7 @@ import ProductSection from '../components/ProductSection/ProductSection'
 
 const HomePage = () => {
   return (
-    <div>
+    <div className='home-page '>
       <Carousel/>
       <ProductSection/>
     </div>
