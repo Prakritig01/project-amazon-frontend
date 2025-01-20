@@ -1,26 +1,50 @@
-import React from 'react';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../slices/cartSlice";
 
-const Card = ({ name, description, category, image, newCost, oldCost }) => {
+const Card = ({ product }) => {
+  const dispatch = useDispatch();
+  const isProductInCart = useSelector(state => state.cart.items.find(item => item.id === product.id));
+
+  const handleAddToCart = (product) => {
+    dispatch(addToCart({product}));
+  };
   return (
-    <div className="bg-white shadow-md rounded-lg p-4 flex flex-col justify-between  font-roboto w-auto max-w-xs">
+    <div className="card bg-white border border-gray-200 rounded-lg overflow-hidden w-64">
+      {/* Product Image */}
       <img
-        src={image}
-        alt={name}
-        className="w-full h-56 object-contain rounded-md mb-4"
+        src={product.image}
+        alt={product.name}
+        className="image w-full  object-contain"
       />
-      <div className="mb-4">
-        <h3 className="text-lg font-semibold text-black">{name}</h3>
-        <p className="text-sm text-black">{description}</p>
-        <p className="text-sm text-gray-500 mt-2">Category: {category}</p>
-      </div>
-      <div className="flex flex-col justify-between items-start">
-        <div>
-          <p className="text-xl font-bold">₹{newCost}</p>
-          <p className="text-sm text-gray-500 line-through text-red-600">₹{oldCost}</p>
+
+      {/* Product Details */}
+      <div className="flex flex-col px-4 py-2">
+        <h3 className="text-sm font-roboto break-words">{product.name}</h3>
+
+        {/* Category */}
+        <p className="text-xs text-gray-500 mt-2">
+          Category: {product.category}
+        </p>
+
+        {/* Price Section */}
+        <div className="flex flex-wrap items-center mt-2 gap-x-4">
+          <div className="text-xl font-medium text-black">
+            ₹{product.new_cost}
+          </div>
+          <div className="text-sm text-red-500 line-through">
+            ₹{product.old_cost}
+          </div>
         </div>
-        <button className="bg-yellow-500 text-black px-4 py-2 rounded-full hover:bg-yellow-600 w-full h-8 mt-4 flex items-center justify-center">
-          Add to Cart
-        </button>
+
+        {/* Add to Cart Button */}
+        <button
+  className="bg-yellow-300 text-black text-sm  px-4 py-2 rounded-lg hover:bg-yellow-600 mt-4 w-full"
+  onClick={() => handleAddToCart()} // Add parentheses to invoke the function
+>
+  Add to Cart
+</button>
+
       </div>
     </div>
   );

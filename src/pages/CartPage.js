@@ -1,6 +1,7 @@
 import React from 'react'
 import CartItems from '../components/CartItems/CartItems'
 import SubTotal from '../components/Subtotal/SubTotal';
+import NavLayout from '../components/NavLayout/NavLayout';
 
 
 const CartPage = () => {
@@ -13,4 +14,12 @@ const CartPage = () => {
   )
 }
 
-export default CartPage
+export default function (){
+  return <>
+  <NavLayout>
+    <CartPage/>
+  </NavLayout>
+  </>
+}
+
+// export default CartPage
