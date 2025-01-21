@@ -7,6 +7,7 @@ import { selectCurrentUser } from '../../slices/authSlice';
 
 const DrawerComponent = ({ open, toggleDrawer }) => {
   const user =  useSelector(selectCurrentUser);
+  const userName = user?.name || "Guest";
   const sections = [
     {
       title: 'Trending',
@@ -63,7 +64,7 @@ const DrawerComponent = ({ open, toggleDrawer }) => {
     >
         <div className="greeting border border-black bg-[#131921] p-3 text-white font-roboto flex justify-center items-center gap-2">
         <i class="fi fi-br-circle-user"></i>
-            Hello ,{user.name}</div>
+            Hello ,{userName}</div>
       <div className="w-64 p-4" style={{ fontFamily: 'Roboto, sans-serif' }}>
         
         

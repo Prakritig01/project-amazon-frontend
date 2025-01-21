@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../slices/authSlice";
 const HeaderLeft = () => {
   const user = useSelector(selectCurrentUser);
+  const userName = user?.name || "Guest"; // Will fallback to "Guest" if user is null or undefined
+
   console.log("user in header", user);
   const navigate = useNavigate();
   const handleLogoClick = () => {
@@ -22,7 +24,7 @@ const HeaderLeft = () => {
 
       <button className="address text-white flex flex-col text-xs  items-center">
         <div className="flex flex-row items-center">
-          <p className="text-gray-400 font-semibold">Deliver to {user.name}</p>
+          <p className="text-gray-400 font-semibold">Deliver to {userName}</p>
         </div>
         <div className="flex flex-row items-center gap-1 font-bold">
           <i class="fi fi-rs-marker "></i>
