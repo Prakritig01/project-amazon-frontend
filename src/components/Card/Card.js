@@ -21,12 +21,12 @@ const Card = ({ product }) => {
     navigate('/cart');
   };
   return (
-    <div className="card bg-white border border-gray-200 rounded-lg overflow-hidden w-64">
+    <div className="card bg-white border border-gray-200 rounded-lg overflow-hidden w-48">
       {/* Product Image */}
       <img
         src={product.image}
         alt={product.name}
-        className="image w-full  object-contain"
+        className="image w-full h-64  object-cover"
       />
 
       {/* Product Details */}
