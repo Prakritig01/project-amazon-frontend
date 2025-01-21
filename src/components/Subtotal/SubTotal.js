@@ -1,12 +1,19 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { selectTotalForCart,selectTotalQuantity } from '../../slices/cartSlice';
 
 const SubTotal = () => {
+  const total = useSelector(selectTotalForCart);
+  const quantity = useSelector(selectTotalQuantity);
   return (
     <div
-      className="subtotal-box bg-white border border-gray-300 shadow-lg rounded-lg p-4 h-[10%] w-[20%] mr-[2%]"
+      className="subtotal-box bg-white border border-gray-300 shadow-lg  p-4 h-[10%] w-[20%] mr-[2%]"
     >
       {/* Heading */}
-      <h2 className="text-lg font-bold mb-2">Subtotal (3 items): ₹3,458.00</h2>
+      <h2 className="text-lg font-bold mb-2">
+  Subtotal ({quantity} {quantity > 1 ? "items" : "item"}): ₹{total}
+</h2>
+
       
       {/* Checkbox */}
       <div className="gift-option flex items-center mb-4">

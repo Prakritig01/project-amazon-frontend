@@ -4,11 +4,13 @@ import {
   selectItemFromCart,
   updateQuantity,
   toggleSelect,
+  selectTotalForCart,
 } from "../../slices/cartSlice";
 
 const CartItems = () => {
   const dispatch = useDispatch();
   const products = useSelector(selectItemFromCart);
+  const total = useSelector(selectTotalForCart);
 
   const handleUpdateQuantity = (id, increment) => {
     dispatch(updateQuantity({ id, increment }));
@@ -19,7 +21,7 @@ const CartItems = () => {
   };
 
   return (
-    <div className="shopping-cart bg-white w-[60%] p-4">
+    <div className="shopping-cart bg-white w-[60%] p-4 flex flex-col shadow-lg">
       <div className="top flex flex-row  justify-between border-b border-gray-500 ">
         <div className="heading flex flex-col ">
           <h1 className="font-roboto text-4xl">Shopping Cart</h1>
@@ -40,12 +42,10 @@ const CartItems = () => {
 
       <div className="products flex flex-col ">
         {products.map((product) => (
-          
           <div
             key={product.id}
             className="flex flex-row min-h-fit object-contain p-3 gap-4 border-b border-gray-300"
           >
-            
             {/* Checkbox */}
             <div className="product-check-box">
               <input
@@ -66,7 +66,6 @@ const CartItems = () => {
 
             {/* Product Info */}
             <div className="mid flex flex-col gap-2">
-
               <div className="product-info  w-[60%] flex flex-col gap-1 ">
                 <h3 className="font-roboto text-xl break-words">
                   {product.name}
@@ -81,7 +80,10 @@ const CartItems = () => {
 
               {/* Quantity */}
               <div className="product-quantity flex flex-row gap-4 border-2 border-yellow-300  h-[18%] w-[20%] rounded-l-full rounded-r-full items-center justify-between p-1">
-                <button onClick={() => handleUpdateQuantity(product.id, -1)} className="w-8 h-8 font-bold">
+                <button
+                  onClick={() => handleUpdateQuantity(product.id, -1)}
+                  className="w-8 h-8 font-bold"
+                >
                   {product.quantity > 1 ? (
                     <i className="fi fi-br-minus"></i>
                   ) : (
@@ -89,7 +91,10 @@ const CartItems = () => {
                   )}
                 </button>
                 <p className="font-roboto font-bold">{product.quantity}</p>
-                <button onClick={() => handleUpdateQuantity(product.id, 1)} className="w-8 h-8 font-bold">
+                <button
+                  onClick={() => handleUpdateQuantity(product.id, 1)}
+                  className="w-8 h-8 font-bold"
+                >
                   <i className="fi fi-br-plus"></i>
                 </button>
               </div>
@@ -97,12 +102,18 @@ const CartItems = () => {
 
             {/* Product Price */}
             <div className="product-price ml-auto  flex flex-col gap-2">
-              <p className="font-roboto font-bold text-xl">₹{product.new_cost}</p>
-              <p className="old-price line-through text-red-600">₹{product.old_cost}</p>
+              <p className="font-roboto font-bold text-xl">
+                ₹{product.new_cost}
+              </p>
+              <p className="old-price line-through text-red-600">
+                ₹{product.old_cost}
+              </p>
             </div>
           </div>
-
         ))}
+        <div className="subtotal flex  justify-end p-2">
+          <h2 className="font-roboto text-2xl ">Cart Total: ₹{total}</h2>
+        </div>
       </div>
     </div>
   );

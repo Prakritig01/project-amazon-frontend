@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 
 const Carousel = () => {
-  // Array of image URLs (Replace with your images)
+  
   const images = [
     'https://images-eu.ssl-images-amazon.com/images/G/31/Events/img25/janART25/H1/KV_PC_Centre_Hero_2X._CB552774960_.jpg',
     'https://images-eu.ssl-images-amazon.com/images/G/31/img22/WLA/2025/JanART/Uber/Gateway/Event/D197029535__WLA_JanART_GatewayPC_Hero_3000x1200_Lifestyle_1._CB552673282_.jpg',
