@@ -1,6 +1,6 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; 
-import flag from "./../../assets/flag.png"; 
+import { useNavigate } from "react-router-dom";
+import flag from "./../../assets/flag.png";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../slices/authSlice";
 
@@ -18,9 +18,7 @@ const HeaderRight = () => {
       {/* Flag and Language Button */}
       <div className="flex flex-row items-center h-8">
         <img src={flag} alt="Flag" className="h-5 w-6" />
-        <select
-          className="h-5 bg-transparent text-white border-none focus:outline-none hover:text-gray-300 text-sm mb-1"
-        >
+        <select className="h-5 bg-transparent text-white border-none focus:outline-none hover:text-gray-300 text-sm mb-1">
           <option value="EN">EN</option>
         </select>
       </div>
@@ -28,38 +26,29 @@ const HeaderRight = () => {
       {/* Hello, Prakriti and Accounts Button */}
       <div className="flex flex-col items-center h-8 text-white text-xs">
         <p className="text-left">Hello, {userName}</p>
-        <select
-          className=" bg-transparent text-white border-none focus:outline-none hover:text-gray-300 font-bold"
-        >
+        <select className=" bg-transparent text-white border-none focus:outline-none hover:text-gray-300 font-bold">
           <option value=" Accounts & Lists"> Accounts & Lists</option>
-         
         </select>
       </div>
 
       {/* Returns and Orders Buttons */}
       <div className="flex flex-col items-center h-8 text-white text-xs">
-        <button
-          className="bg-transparent text-white border-none focus:outline-none hover:text-gray-300"
-        >
+        <button className="bg-transparent text-white border-none focus:outline-none hover:text-gray-300">
           Returns
         </button>
-        <button
-          className="bg-transparent text-white border-none focus:outline-none hover:text-gray-300"
-        >
+        <button className="bg-transparent text-white border-none focus:outline-none hover:text-gray-300">
           & Orders
         </button>
       </div>
 
       {/* Cart Button */}
-      <div className="flex flex-row items-center h-8 text-white text-xs space-x-1">
+      <button
+        className="flex flex-row items-center h-8 text-white text-xs space-x-1  hover:text-gray-300 hover:border-white"
+        onClick={handleCartClick}
+      >
         <i className="fi fi-bs-shopping-cart text-xl"></i> {/* Cart Icon */}
-        <button
-          onClick={handleCartClick} 
-          className="bg-transparent text-white border-none focus:outline-none hover:text-gray-300 hover:border-white"
-        >
-          Cart
-        </button>
-      </div>
+        Cart
+      </button>
     </div>
   );
 };
