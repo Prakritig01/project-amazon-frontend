@@ -51,7 +51,7 @@ const Card = ({ product }) => {
         {/* Add to Cart Button */}
 {isProductInCart ? (
   <Link to="/cart" className="block w-full mt-4">
-    <button className="bg-gray-300 text-black text-sm px-4 py-2 rounded-lg hover:bg-yellow-600 w-full">
+    <button className="bg-gray-300 text-black text-sm px-4 py-2 rounded-lg hover:bg-gray-500 w-full">
       Go to Cart
     </button>
   </Link>
