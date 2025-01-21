@@ -17,7 +17,7 @@ const SubTotal = () => {
       </div>
       
       {/* Proceed to Buy Button */}
-      <button className="proceed-btn w-full bg-yellow-400 text-black font-bold py-2 px-4 rounded-lg hover:bg-yellow-300">
+      <button className="proceed-btn w-full bg-yellow-300 text-black font-roboto py-2 px-4 rounded-l-full rounded-r-full hover:bg-yellow-300">
         Proceed to Buy
       </button>
       
