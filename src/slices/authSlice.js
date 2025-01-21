@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { act } from "react";
 
 const authSlice = createSlice({
     name : 'auth',
@@ -7,7 +8,8 @@ const authSlice = createSlice({
     },
     reducers : {
         setCurrentUser : (state,action) =>{
-            const user = action.payload.email;
+            // console.log("action.payload",action.payload);
+            const user = action.payload;
             state.currentUser = user;
         },
         removeCurrentUser : (state,action) => {},
@@ -16,5 +18,7 @@ const authSlice = createSlice({
 })
 
 export const {setCurrentUser,removeCurrentUser} = authSlice.actions;
+
+export const selectCurrentUser = (state) => state.auth.currentUser;
 
 export default authSlice.reducer;

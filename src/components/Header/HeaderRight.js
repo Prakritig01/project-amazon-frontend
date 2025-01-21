@@ -1,9 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"; 
 import flag from "./../../assets/flag.png"; 
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../slices/authSlice";
 
 const HeaderRight = () => {
   const navigate = useNavigate(); // Hook for navigation
+  const user = useSelector(selectCurrentUser);
 
   const handleCartClick = () => {
     navigate("/cart"); // Navigates to Cart page
@@ -23,7 +26,7 @@ const HeaderRight = () => {
 
       {/* Hello, Prakriti and Accounts Button */}
       <div className="flex flex-col items-center h-8 text-white text-xs">
-        <p className="text-left">Hello, Prakriti</p>
+        <p className="text-left">Hello, {user.name}</p>
         <select
           className=" bg-transparent text-white border-none focus:outline-none hover:text-gray-300 font-bold"
         >

@@ -37,11 +37,19 @@ const AuthPages = () => {
           password: formData.password,
         })
         .then((response) => {
-          const { token, refresh_token } = response?.data;
+          // console.log("response", response);
+          const { token, refresh_token, username } = response?.data;
+          localStorage.setItem("token", response.data.token);
+          localStorage.setItem("refreshToken", response.data.refresh_token);
           dispatch(
-            setCurrentUser({ token, refresh_token, email: formData.email })
+            setCurrentUser({
+              token : token,
+              refresh_token: refresh_token,
+              email: formData.email,
+              name: username,
+            })
           );
-          navigate("/profile");
+          navigate("/");
         })
         .catch((err) => {
           const errorMessage =

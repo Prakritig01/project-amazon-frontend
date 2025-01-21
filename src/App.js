@@ -9,14 +9,26 @@ import { Provider, useSelector } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/Login/Login";
 import { useEffect } from "react";
+import { selectCurrentUser,setCurrentUser } from "./slices/authSlice";
+import axios from "axios";
+import { useDispatch } from "react-redux";
 
 
 
 function App() {
-  const user = useSelector((state) => state.auth.curentUser);
-  // useEffect({
+  const dispatch = useDispatch();
 
-  // } , [user]);
+  useEffect(() => {
+    const refreshToken = localStorage.getItem('refreshToken');
+    axios.post('http://localhost:5001/user', { token: refreshToken })
+    .then(response => {
+      const user = response.data;
+      dispatch(setCurrentUser(user));
+    }).catch(err => console.error(err));
+  }, []);
+
+  const user = useSelector(selectCurrentUser);
+  
   return (
     <div className="App">
       <Router>
