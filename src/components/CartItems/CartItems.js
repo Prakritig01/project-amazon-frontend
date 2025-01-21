@@ -24,7 +24,7 @@ const CartItems = () => {
     <div className="shopping-cart bg-white w-[60%] p-4 flex flex-col shadow-lg">
       <div className="top flex flex-row  justify-between border-b border-gray-500 ">
         <div className="heading flex flex-col ">
-          <h1 className="font-roboto text-4xl">Shopping Cart</h1>
+          <h1 className="font-roboto text-2xl">Shopping Cart</h1>
           <button
             className="text-start text-blue-700"
             onClick={() => {
