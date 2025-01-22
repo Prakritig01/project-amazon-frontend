@@ -43,13 +43,11 @@ const AuthPages = () => {
           localStorage.setItem("refreshToken", response.data.refresh_token);
           dispatch(
             setCurrentUser({
-              token : token,
-              refresh_token: refresh_token,
               email: formData.email,
-              name: username,
+              username: username,
             })
           );
-          navigate("/");
+          navigate("/profile");
         })
         .catch((err) => {
           const errorMessage =
@@ -71,7 +69,7 @@ const AuthPages = () => {
         })
         .then((response) => {
           // Handle successful registration
-          dispatch(setCurrentUser({ email: formData.email }));
+          dispatch(setCurrentUser({ email: formData.email,username : formData.name }));
           navigate("/profile"); // Redirect to login or another page
         })
         .catch((err) => {

@@ -20,9 +20,11 @@ function App() {
 
   useEffect(() => {
     const refreshToken = localStorage.getItem('refreshToken');
+    console.log("refreshToken", refreshToken);
     axios.post('http://localhost:5001/user', { token: refreshToken })
     .then(response => {
-      const user = response.data;
+      const {user} = response.data;
+      console.log(" in useEffect", user);
       dispatch(setCurrentUser(user));
     }).catch(err => console.error(err));
   }, []);

@@ -7,15 +7,18 @@ import { selectCurrentUser } from "../../slices/authSlice";
 const HeaderRight = () => {
   const navigate = useNavigate(); // Hook for navigation
   const user = useSelector(selectCurrentUser);
-  const userName = user?.name || "Guest";
+  const userName = user?.username || "Guest";
 
   const handleCartClick = () => {
     navigate("/cart"); // Navigates to Cart page
   };
 
+  const handleAccountClick = () =>{
+    navigate("/profile");
+  }
   return (
     <div className="flex flex-row items-center h-8 align-middle space-x-4">
-      {/* Flag and Language Button */}
+      
       <div className="flex flex-row items-center h-8">
         <img src={flag} alt="Flag" className="h-5 w-6" />
         <select className="h-5 bg-transparent text-white border-none focus:outline-none hover:text-gray-300 text-sm mb-1">
@@ -24,12 +27,12 @@ const HeaderRight = () => {
       </div>
 
       {/* Hello, Prakriti and Accounts Button */}
-      <div className="flex flex-col items-center h-8 text-white text-xs">
+      <button className="flex flex-col items-center h-8 text-white text-xs" onClick={handleAccountClick}>
         <p className="text-left">Hello, {userName}</p>
         <select className=" bg-transparent text-white border-none focus:outline-none hover:text-gray-300 font-bold">
           <option value=" Accounts & Lists"> Accounts & Lists</option>
         </select>
-      </div>
+      </button>
 
       {/* Returns and Orders Buttons */}
       <div className="flex flex-col items-center h-8 text-white text-xs">

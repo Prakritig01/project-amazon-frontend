@@ -7,7 +7,7 @@ import { selectCurrentUser } from '../../slices/authSlice';
 
 const DrawerComponent = ({ open, toggleDrawer }) => {
   const user =  useSelector(selectCurrentUser);
-  const userName = user?.name || "Guest";
+  const userName = user?.username || "Guest";
   const sections = [
     {
       title: 'Trending',

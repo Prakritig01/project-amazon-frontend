@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../slices/authSlice";
 const HeaderLeft = () => {
   const user = useSelector(selectCurrentUser);
-  const userName = user?.name || "Guest"; // Will fallback to "Guest" if user is null or undefined
+  const userName = user?.username || "Guest"; // Will fallback to "Guest" if user is null or undefined
 
   console.log("user in header", user);
   const navigate = useNavigate();
