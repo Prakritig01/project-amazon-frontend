@@ -9,6 +9,11 @@ import axios from "axios";
 export function Auth(){
   const user = useSelector(selectCurrentUser);
   const location  = useLocation();
+  const  loading = useSelector((state) => state.auth.loading);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  // return (user ? <Outlet/> : <div>Login</div>);
   return (
     user ? <Outlet/> : <Navigate to ='/login' state = {{from : location.pathname}} />
   );

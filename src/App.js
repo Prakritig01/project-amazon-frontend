@@ -9,7 +9,7 @@ import { Provider, useSelector } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login, { Auth } from "./components/Login/Login";
 import { useEffect } from "react";
-import { selectCurrentUser, setCurrentUser } from "./slices/authSlice";
+import { selectCurrentUser, setCurrentUser, setLoading } from "./slices/authSlice";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 
@@ -19,6 +19,7 @@ function App() {
   useEffect(() => {
     const refreshToken = localStorage.getItem("refreshToken");
     console.log("refreshToken", refreshToken);
+    dispatch(setLoading(true));
     axios
       .post("http://localhost:5001/user", { token: refreshToken })
       .then((response) => {
@@ -26,7 +27,10 @@ function App() {
         console.log(" in useEffect", user);
         dispatch(setCurrentUser(user));
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => {
+        dispatch(setLoading(false));
+      });
   }, []);
 
   const user = useSelector(selectCurrentUser);
