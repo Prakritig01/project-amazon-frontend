@@ -1,13 +1,24 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
 import AmazonIcon from "./../../assets/amazon_logo.png";
-import { useDispatch } from "react-redux";
-import { setCurrentUser } from "../../slices/authSlice";
+import { useDispatch ,useSelector} from "react-redux";
+import { setCurrentUser,selectCurrentUser } from "../../slices/authSlice";
+
 import axios from "axios";
+
+export function Auth(){
+  const user = useSelector(selectCurrentUser);
+  const location  = useLocation();
+  return (
+    user ? <Outlet/> : <Navigate to ='/login' state = {{from : location.pathname}} />
+  );
+}
 
 const AuthPages = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const nextPage = location?.state?.from || "/profile";
   const [error, setError] = useState("");
   const [isLoginView, setIsLoginView] = useState(true);
   const [formData, setFormData] = useState({
@@ -47,7 +58,7 @@ const AuthPages = () => {
               username: username,
             })
           );
-          navigate("/profile");
+          navigate(nextPage);
         })
         .catch((err) => {
           const errorMessage =
@@ -70,7 +81,7 @@ const AuthPages = () => {
         .then((response) => {
           // Handle successful registration
           dispatch(setCurrentUser({ email: formData.email,username : formData.name }));
-          navigate("/profile"); // Redirect to login or another page
+          navigate(nextPage); // Redirect to login or another page
         })
         .catch((err) => {
           const errorMessage =

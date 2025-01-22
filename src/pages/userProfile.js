@@ -2,6 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeCurrentUser } from "../slices/authSlice";
 import { useNavigate } from "react-router-dom";
+import AmazonIcon from './../assets/amazon_logo.png';
+import { Link } from "react-router-dom";
 
 const UserProfile = () => {
   const navigate = useNavigate();
@@ -26,7 +28,15 @@ const UserProfile = () => {
   };
 
   return (
+    <>
+    {/* Header */}
+    <div className="flex space border-b bg-[#121921] border-gray-300 py-3">
+    <Link to="/">
+      <img src={AmazonIcon} alt="Amazon" className="h-8 mx-auto ml-4" />
+    </Link>
+  </div>
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      
       <div className="bg-white shadow-md rounded-lg p-8 max-w-sm w-full text-center">
         {currentUser ? (
           <>
@@ -59,6 +69,7 @@ const UserProfile = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 

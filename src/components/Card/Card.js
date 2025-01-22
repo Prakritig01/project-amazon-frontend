@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { selectCurrentUser } from "../../slices/authSlice";
 
 const Card = ({ product }) => {
   useEffect(() => {
@@ -12,21 +12,35 @@ const Card = ({ product }) => {
       behavior: "smooth",
     });
   });
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isProductInCart = useSelector(state => state.cart.items.find(item => item.id === product.id));
+
+  // Retrieve user authentication state and cart state
+  const isUserLoggedIn = useSelector(selectCurrentUser); // Replace `currentUser` with your authSlice property
+  const isProductInCart = useSelector((state) =>
+    state.cart.items.find((item) => item.id === product.id)
+  );
 
   const handleAddToCart = (product) => {
-    dispatch(addToCart({product}));
-    navigate('/cart');
+    if (!isUserLoggedIn) {
+      // If user is not logged in, navigate to the login page
+      navigate("/login");
+      return;
+    }
+
+    // Add product to cart
+    dispatch(addToCart({ product }));
+    navigate("/cart");
   };
+
   return (
     <div className="card bg-white border border-gray-200 rounded-lg overflow-hidden w-48">
       {/* Product Image */}
       <img
         src={product.image}
         alt={product.name}
-        className="image w-full h-64  object-cover"
+        className="image w-full h-64 object-cover"
       />
 
       {/* Product Details */}
@@ -49,22 +63,25 @@ const Card = ({ product }) => {
         </div>
 
         {/* Add to Cart Button */}
-{isProductInCart ? (
-  <Link to="/cart" className="block w-full mt-4">
-    <button className="bg-gray-300 text-black text-sm px-4 py-2 rounded-lg hover:bg-gray-500 w-full">
-      Go to Cart
-    </button>
-  </Link>
-) : (
-  <button
-    className="bg-yellow-300 text-black text-sm px-4 py-2 rounded-lg hover:bg-yellow-600 mt-4 w-full"
-    onClick={() => handleAddToCart(product)}
-  >
-    Add to Cart
-  </button>
-)}
-
-
+        {isProductInCart ? (
+          <Link to="/cart" className="block w-full mt-4">
+            <button className="bg-gray-300 text-black text-sm px-4 py-2 rounded-lg hover:bg-gray-500 w-full">
+              Go to Cart
+            </button>
+          </Link>
+        ) : (
+          <button
+            className={`${
+              isUserLoggedIn
+                ? "bg-yellow-300 hover:bg-yellow-600"
+                : "bg-yellow-300 cursor-not-allowed text-nowrap"
+            } text-black text-sm px-4 py-2 rounded-lg mt-4 w-full`}
+            onClick={() => handleAddToCart(product)}
+            disabled={!isUserLoggedIn} // Disable button if user is not logged in
+          >
+            {isUserLoggedIn ? "Add to Cart" : "Login to Add to Cart"}
+          </button>
+        )}
       </div>
     </div>
   );
