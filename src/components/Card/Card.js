@@ -23,12 +23,6 @@ const Card = ({ product }) => {
   );
 
   const handleAddToCart = (product) => {
-    if (!isUserLoggedIn) {
-      // If user is not logged in, navigate to the login page
-      navigate("/login");
-      return;
-    }
-
     // Add product to cart
     dispatch(addToCart({ product }));
     navigate("/cart");
@@ -63,24 +57,21 @@ const Card = ({ product }) => {
         </div>
 
         {/* Add to Cart Button */}
-        {isProductInCart ? (
+        {isUserLoggedIn && !isProductInCart && (
+          <button
+            className="bg-yellow-300 hover:bg-yellow-600 text-black text-sm px-4 py-2 rounded-lg mt-4 w-full"
+            onClick={() => handleAddToCart(product)}
+          >
+            Add to Cart
+          </button>
+        )}
+
+        {isUserLoggedIn && isProductInCart && (
           <Link to="/cart" className="block w-full mt-4">
             <button className="bg-gray-300 text-black text-sm px-4 py-2 rounded-lg hover:bg-gray-500 w-full">
               Go to Cart
             </button>
           </Link>
-        ) : (
-          <button
-            className={`${
-              isUserLoggedIn
-                ? "bg-yellow-300 hover:bg-yellow-600"
-                : "bg-yellow-300 cursor-not-allowed text-nowrap"
-            } text-black text-sm px-4 py-2 rounded-lg mt-4 w-full`}
-            onClick={() => handleAddToCart(product)}
-            disabled={!isUserLoggedIn} // Disable button if user is not logged in
-          >
-            {isUserLoggedIn ? "Add to Cart" : "Login to Add to Cart"}
-          </button>
         )}
       </div>
     </div>

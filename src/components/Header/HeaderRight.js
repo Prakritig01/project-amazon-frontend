@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import flag from "./../../assets/flag.png";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../slices/authSlice";
+import  AccountDropdown from './../AccountDropdown/AccountDropdown';
 
 const HeaderRight = () => {
   const navigate = useNavigate(); // Hook for navigation
@@ -27,12 +28,13 @@ const HeaderRight = () => {
       </div>
 
       {/* Hello, Prakriti and Accounts Button */}
-      <button className="flex flex-col items-center h-8 text-white text-xs" onClick={handleAccountClick}>
+      {/* <button className="flex flex-col items-center h-8 text-white text-xs" onClick={handleAccountClick}>
         <p className="text-left">Hello, {userName}</p>
         <select className=" bg-transparent text-white border-none focus:outline-none hover:text-gray-300 font-bold">
           <option value=" Accounts & Lists"> Accounts & Lists</option>
         </select>
-      </button>
+      </button> */}
+      <AccountDropdown/>
 
       {/* Returns and Orders Buttons */}
       <div className="flex flex-col items-center h-8 text-white text-xs">
